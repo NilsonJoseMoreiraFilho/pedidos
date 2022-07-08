@@ -1,0 +1,204 @@
+openapi: 3.0.1
+
+info: 
+    title: API de Pedidos
+    description: Essa API foi desenvolvida para uma avaliação
+    version: 0.0.1
+  
+          
+
+#servers para executar as requisições
+servers:
+- url: http://localhost:8090
+  description: Localhost
+
+# endpoints
+paths:
+
+  /pedidos:
+    post: 
+      tags:
+        - Pedidos
+      summary: Serviço que inclui pedidos.
+      description: Este serviço inclui os pedidos de acordo com a regra de negócios especificada.
+      requestBody:
+        description: No corpo da requisição é possível informar de 1 a 10 pedidos, sendo que alguns dos campos são obrigatórios.
+        content:
+          application/json:
+            schema: 
+              type: array
+              items:
+                $ref: '#/components/schemas/PedidoForm'
+          application/xml:
+            schema: 
+              xml:
+                name: pedidoForm
+              type: array
+              items: 
+                $ref: '#/components/schemas/PedidoForm'
+                
+              
+
+                  
+      responses:
+        201: 
+          description: Pedidos incluídos com sucesso!
+          
+        400:
+          description: Bad request (Problemas com os parâmetros de entrada).
+          content:
+            application/json: 
+              schema:
+                $ref: '#/components/schemas/GenericExceptionDto'
+                    
+            application/xml: 
+              schema:
+                $ref: '#/components/schemas/GenericExceptionDto'
+
+        404:
+          description: Not found
+        
+        500:
+          description: Erro interno do servidor.
+          content:
+            application/json: 
+              schema:
+                $ref: '#/components/schemas/GenericExceptionDto'
+                    
+            application/xml: 
+              schema:
+                $ref: '#/components/schemas/GenericExceptionDto'
+
+    get: 
+    
+      tags:
+        - Pedidos
+        
+      parameters: 
+        - in: query
+          name: numeroControle
+          schema:
+            type: integer
+          description: Número de controle.
+          example: 123
+        - in : query
+          name: dataCadastro
+          schema:
+            type: string
+          description: Data de cadastro dos pedidos (se informado o número de controle, somente ele será utilizado, desconsiderando a data)
+          example: 2022-03-03
+          
+      summary: Consulta pedidos cadastrados.
+    
+      description: Esse serviço consulta os pedidos já cadastrados na base, podendo ser filtrados ou não. 
+      
+      responses:
+        200: 
+          description: Consulta realizada com sucesso!
+          content:
+            application/json:
+              schema: 
+                type: array
+                items:
+                  $ref: '#/components/schemas/PedidoDto'
+            application/xml:
+              schema: 
+                xml:
+                  name: pedidosDto
+                type: array
+                items: 
+                  $ref: '#/components/schemas/PedidoDto'
+         
+         
+        204:
+          description: No content     
+         
+        404:
+          description: Not found
+        
+        500:
+          description: Erro interno do servidor.
+          content:
+            application/json: 
+              schema:
+                $ref: '#/components/schemas/GenericExceptionDto'
+                    
+            application/xml: 
+              schema:
+                $ref: '#/components/schemas/GenericExceptionDto' 
+  
+                
+# Models
+components:
+  schemas:
+    PedidoForm:
+      type: object
+      properties:
+        numeroControle:
+          type: integer
+          example: 9999999999
+          description: "Número único para controle dos pedidos"
+        dataCadastro:
+          type: string
+          example: "2022-07-07"
+          description: "Data de cadastro (se não informada, será considerada a data atual)."
+        nomeProduto:
+          type: string
+          example: "Produto A"
+          description: "Nome do produto."
+        valorUnitario:
+          type: number
+          example: "1234.01"
+          description: "Preço unitário do produto."
+        quantidadeProdutos:
+          type: integer
+          example: 20
+          description: "Quantidade do produto (Se não informada, será considerada como 1)."
+        codigoCliente:
+          type: integer
+          example: 10
+          description: "Código do cliente (já cadastrado na base)"
+      required: 
+        - numeroControle
+        - nomeProduto
+        - valorUnitario
+        - codigoCliente
+        
+    PedidoDto:
+      type: object
+      properties:
+        numeroControle:
+          type: integer
+          example: 9999999999
+          description: "Número único para controle dos pedidos"
+        dataCadastro:
+          type: string
+          example: "2022-07-07"
+          description: "Data de cadastro."
+        nomeProduto:
+          type: string
+          example: "Produto A"
+          description: "Nome do produto."
+        valorUnitario:
+          type: number
+          example: "1234.01"
+          description: "Preço unitário do produto."
+        quantidadeProdutos:
+          type: integer
+          example: 20
+          description: "Quantidade do produto."
+        codigoCliente:
+          type: integer
+          example: 10
+          description: "Código do cliente (já cadastrado na base)"
+        valorTotal:
+          type: number
+          example: "1234.01"
+          description: "Valor total, calculado de acordo com a regra de negócio definida."
+    
+    GenericExceptionDto:
+        type: object
+        properties:
+          message:
+            type: string
+            example: "Mensagens de erro."    
