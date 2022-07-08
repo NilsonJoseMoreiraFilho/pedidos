@@ -35,4 +35,4 @@ Após a importação do projeto, os seguintes passos precisam ser executados:
 
 # Apoio
 
-Disponibilizarei uma pasta "Apoio" contendo uma collection de exemplo no Postman, caso venha a ser útil.
+Disponibilizarei uma pasta "Apoio" contendo uma collection de exemplo no Postman e um documento YAML contendo uma documentação básica em Swagger, caso venha a ser útil.
