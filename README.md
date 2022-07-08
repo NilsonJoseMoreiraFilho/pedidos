@@ -32,3 +32,7 @@ Após a importação do projeto, os seguintes passos precisam ser executados:
 1. Executar o script CREATE_BD.sql, presente na pasta SQL. Ele é responsável pela criação inicial das bases.
 2. Ajustar os arquivos de configuração "application.properties" e "application-test.properties" na pasta src/main/resources. Esses arquivos contem informações sobre a conexão com o banco de dados e a porta onde a aplicação deve subir.
 3. Executar normalmente a aplicação / testes. A criação das tabelas fica por conta do Spring (inclusive o preenchimento inicial da tabela de clientes). 
+
+# Apoio
+
+Disponibilizarei uma pasta "Apoio" contendo uma collection de exemplo no Postman, caso venha a ser útil.
