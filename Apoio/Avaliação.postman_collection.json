@@ -1,0 +1,156 @@
+{
+	"info": {
+		"_postman_id": "2b4b8b56-d00b-4657-abca-75fb30af3c46",
+		"name": "Avaliação",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10788049"
+	},
+	"item": [
+		{
+			"name": "Buscar todos",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/pedidos",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pedidos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar por número",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/pedidos?numeroControle=7",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pedidos"
+					],
+					"query": [
+						{
+							"key": "numeroControle",
+							"value": "7"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar por data",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8080/pedidos?dataCadastro=2022-07-05",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pedidos"
+					],
+					"query": [
+						{
+							"key": "dataCadastro",
+							"value": "2022-07-05"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Incluir",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<root>\r\n  <row>\r\n    <numeroControle>12223</numeroControle>\r\n    <dataCadastro>2022-07-05</dataCadastro>\r\n    <nomeProduto>produtoteste</nomeProduto>\r\n    <valorUnitario>100</valorUnitario>\r\n    <quantidadeProdutos>10</quantidadeProdutos>\r\n    <codigoCliente>1</codigoCliente>\r\n  </row>\r\n  <row>\r\n    <numeroControle>134123</numeroControle>\r\n    <dataCadastro>2022-07-05</dataCadastro>\r\n    <nomeProduto>produtoteste</nomeProduto>\r\n    <valorUnitario>100</valorUnitario>\r\n    <quantidadeProdutos>6</quantidadeProdutos>\r\n    <codigoCliente>1</codigoCliente>\r\n  </row>\r\n  <row>\r\n    <numeroControle>13422123</numeroControle>\r\n    <dataCadastro>2022-07-05</dataCadastro>\r\n    <nomeProduto>produtoteste</nomeProduto>\r\n    <valorUnitario>100</valorUnitario>\r\n    <quantidadeProdutos>5</quantidadeProdutos>\r\n    <codigoCliente>1</codigoCliente>\r\n  </row>\r\n</root>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/pedidos",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pedidos"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
